@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="logger"
+		class="org.springframework.beans.factory.config.CommonsLogFactoryBean">
+		<property name="logName" value="beanconfiguration" />
+	</bean>
+
+
+	<bean id="three" class="xmlconfiguredbeans.impl.BeanThreeImpl" />
+	<bean id="two" class="xmlconfiguredbeans.impl.BeanTwoImpl"
+		p:property="property" p:beanThree-ref="three">
+		<property name="number" value="3" />
+		<constructor-arg ref="logger"></constructor-arg>
+	</bean>
+	<bean id="one" class="xmlconfiguredbeans.impl.BeanOneImpl">
+		<constructor-arg ref="two"></constructor-arg>
+	</bean>
+	<bean id="four" class="xmlconfiguredbeans.impl.SingletonBeanFourImpl"
+		factory-method="getInstance" />
+	<bean id="fiveFactory" class="xmlconfiguredbeans.impl.BeanFiveFactory" />
+	<bean id="five" factory-bean="fiveFactory" factory-method="getBeanFiveInstance" />
+
+
+</beans>

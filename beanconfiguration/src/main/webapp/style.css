@@ -1,0 +1,29 @@
+body {
+    font-family: georgia;
+    font-size: 15px;
+    line-height: 1.3em;
+    background-color: #FFFFFF;
+    color: black;
+    margin:0;
+    padding:0;
+}
+
+div.comment
+, #navigation
+, .myCommentForm {
+    background-color: #E6E6E6;
+    margin: 5px;
+    width: 300px;
+    border:1px solid #000000 !important;
+    margin: 8px;
+    padding: 10px;
+}
+
+.navigationItem {
+    background-color: #E6E6E6;
+}
+
+.navigationItem a {
+    text-decoration:underline;
+    color:black;
+}
