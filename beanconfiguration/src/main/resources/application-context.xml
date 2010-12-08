@@ -4,17 +4,34 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 						http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="logger"
-		class="org.springframework.beans.factory.config.CommonsLogFactoryBean">
-		<property name="logName" value="beanconfiguration" />
+	<bean id="three" class="xmlconfiguredbeans.impl.BeanThreeImpl">
+		<constructor-arg name="list">
+			<list>
+				<value>first</value>
+				<value>second</value>
+				<value>third</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg name="map">
+			<map>
+				<entry key="firstkey">
+					<value>firstinmap</value>
+				</entry>
+				<entry key="secondkey">
+					<value>secondinmap</value>
+				</entry>
+			</map>
+		</constructor-arg>
+<!--		<constructor-arg name="props">-->
+<!--		<props>-->
+<!--		-->
+<!--		</props>-->
+<!--		-->
+<!--		</constructor-arg>-->
 	</bean>
-
-
-	<bean id="three" class="xmlconfiguredbeans.impl.BeanThreeImpl" />
 	<bean id="two" class="xmlconfiguredbeans.impl.BeanTwoImpl"
 		p:property="property" p:beanThree-ref="three">
 		<property name="number" value="3" />
-		<constructor-arg ref="logger"></constructor-arg>
 	</bean>
 	<bean id="one" class="xmlconfiguredbeans.impl.BeanOneImpl">
 		<constructor-arg ref="two"></constructor-arg>
@@ -23,6 +40,7 @@
 		factory-method="getInstance" />
 	<bean id="fiveFactory" class="xmlconfiguredbeans.impl.BeanFiveFactory" />
 	<bean id="five" factory-bean="fiveFactory" factory-method="getBeanFiveInstance" />
+
 
 
 </beans>

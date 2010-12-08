@@ -18,7 +18,7 @@
 
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<level value="warn" />
 	</logger>
 	
 	<logger name="org.springframework.jdbc">

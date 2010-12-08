@@ -3,9 +3,11 @@ package xmlconfiguredbeans;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import xmlconfiguredbeans.BeanOne;
@@ -20,7 +22,7 @@ public class XmlConfigurationTests {
 	public void setup() {
 		ctx = new ClassPathXmlApplicationContext("/application-context.xml");
 	}
-
+	
 	@Test
 	public void appContextShouldBeInititated() {
 		assertNotNull(ctx);
@@ -67,4 +69,17 @@ public class XmlConfigurationTests {
 		assertNotNull(five);
 	}
 	
+	@Test
+	public void canGetList() {
+		BeanThree three = (BeanThree) ctx.getBean(BeanThree.class);
+		
+		assertEquals("first", three.getList().get(0));
+	}
+	
+	@Test
+	public void canGetMap() {
+		BeanThree three = (BeanThree) ctx.getBean(BeanThree.class);
+		
+		assertEquals("firstinmap", three.getMap().get("firstkey"));
+	}
 }
