@@ -14,21 +14,21 @@ import xmlconfiguredbeans.BeanTwo;
 
 public class XmlConfigurationTests {
 	
-	private ApplicationContext appCtx;
+	private ApplicationContext ctx;
 
 	@Before
 	public void setup() {
-		appCtx = new ClassPathXmlApplicationContext("/application-context.xml");
+		ctx = new ClassPathXmlApplicationContext("/application-context.xml");
 	}
 
 	@Test
 	public void appContextShouldBeInititated() {
-		assertNotNull(appCtx);
+		assertNotNull(ctx);
 	}
 	
 	@Test
 	public void canGetBeanOneWithDeps() {
-		BeanOne beanOne = appCtx.getBean(BeanOne.class);
+		BeanOne beanOne = ctx.getBean(BeanOne.class);
 		
 		assertNotNull(beanOne);
 		assertNotNull(beanOne.getBeanTwo());
@@ -36,20 +36,20 @@ public class XmlConfigurationTests {
 	
 	@Test
 	public void canGetProperty() {
-		BeanTwo two = getBeanTwo();
+		BeanTwo two = ctx.getBean(BeanTwo.class);
 		assertEquals(3, two.getNumber());
 	}
 
 	
 	@Test
 	public void canGetPropertyWithP() {
-		BeanTwo two = getBeanTwo();
+		BeanTwo two = ctx.getBean(BeanTwo.class);
 		assertEquals("property", two.getProperty());
 	}
 	
 	@Test
 	public void canGetRefWithP() {
-		BeanTwo two = getBeanTwo();
+		BeanTwo two = ctx.getBean(BeanTwo.class);
 		BeanThree three = two.getBeanThree();
 		
 		assertNotNull(three);
@@ -57,18 +57,14 @@ public class XmlConfigurationTests {
 	
 	@Test
 	public void canGetSingletonBean() {
-		SingletonBeanFour four = appCtx.getBean(SingletonBeanFour.class);
+		SingletonBeanFour four = ctx.getBean(SingletonBeanFour.class);
 		assertNotNull(four);
 	}
 	
 	@Test
 	public void canGetFactoryCreatedBean() {
-		FactoryCreatedBeanFive five = appCtx.getBean(FactoryCreatedBeanFive.class);
+		FactoryCreatedBeanFive five = ctx.getBean(FactoryCreatedBeanFive.class);
 		assertNotNull(five);
 	}
 	
-	private BeanTwo getBeanTwo() {
-		BeanTwo two = appCtx.getBean(BeanTwo.class);
-		return two;
-	}
 }
