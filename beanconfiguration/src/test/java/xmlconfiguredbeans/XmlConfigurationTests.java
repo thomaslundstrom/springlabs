@@ -82,4 +82,13 @@ public class XmlConfigurationTests {
 		
 		assertEquals("firstinmap", three.getMap().get("firstkey"));
 	}
+	
+	@Test
+	public void canGetProperties() {
+		BeanThree three = (BeanThree) ctx.getBean(BeanThree.class);
+		
+		assertEquals("1", three.getProperties().get("one"));
+		assertEquals("two", three.getProperties().get("two"));
+		assertEquals("numberthree", three.getProperties().get("three"));
+	}
 }
